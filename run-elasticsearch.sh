@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 path=`pwd`/es_data
 
 if [ ! -d "$path" ]; then
