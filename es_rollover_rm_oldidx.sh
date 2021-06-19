@@ -2,6 +2,8 @@
 
 source ./rollover_configurations
 
+display_rollover_configurations
+
 # remove old indices from read aliases.
 # It means that old data will not be available for search.
 # This imitates the behavior of --es.max-span-age flag used in the default index-per-day deployment.

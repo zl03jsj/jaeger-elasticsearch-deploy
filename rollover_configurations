@@ -5,6 +5,8 @@ unit_count=60
 
 max_age=$unit_count${unit:0:1}
 
-echo ____________jaeger elasticsearch configurations____________
-echo '|'unit=$unit, unit_count=$unit_count, index max_age=$max_age
-echo ------------jaeger elasticsearch configurations------------
+display_rollover_configurations() {
+    echo ____________jaeger elasticsearch configurations____________
+    echo '|'unit=$unit, unit_count=$unit_count, index max_age=$max_age
+    echo ------------jaeger elasticsearch configurations------------
+}
