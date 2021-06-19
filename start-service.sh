@@ -2,6 +2,9 @@
 
 set -eo pipefail
 
+if [ $# != 1 ]; then
+    echo input a servername(elasticsearch, jaeger-elk) to startup..
+fi
 start_container() {
     if [ $# != 1 ]; then
         echo 'start_container failed, need a(and only) server-name paramater.'
@@ -22,5 +25,6 @@ start_container() {
     fi
 }
 
-start_container elasticsearch
-start_container jaeger-elk
+servername=$1
+
+start_container $servername
