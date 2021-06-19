@@ -3,7 +3,8 @@
 set -eo pipefail
 
 if [ $# != 1 ]; then
-    echo input a servername(elasticsearch, jaeger-elk) to startup..
+    echo input a servername'('elasticsearch, jaeger-elk')' to startup..
+    exit 0
 fi
 start_container() {
     if [ $# != 1 ]; then

@@ -3,10 +3,13 @@
 unit=seconds
 unit_count=60
 
+elasticsearch_url=http://`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"|grep -v '1$'`:9200
+
 max_age=$unit_count${unit:0:1}
 
 display_rollover_configurations() {
     echo ____________jaeger elasticsearch configurations____________
-    echo '|'unit=$unit, unit_count=$unit_count, index max_age=$max_age
-    echo ------------jaeger elasticsearch configurations------------
+    echo '|'unit=$unit, unit_count=$unit_count, index max_age=$max_age, elasticsearch_url=$elasticsearch_url
+    echo -----------------------------------------------------------
+    echo
 }

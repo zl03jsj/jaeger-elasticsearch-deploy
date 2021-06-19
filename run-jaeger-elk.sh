@@ -1,8 +1,12 @@
 #!/bin/bash
 
+source ./rollover_configurations
+
+echo es_server_urls=$elasticsearch_url
+
 docker run --privileged -d --name jaeger-elk \
     -e SPAN_STORAGE_TYPE=elasticsearch \
-    -e ES_SERVER_URLS=http://localhost:9200 \
+    -e ES_SERVER_URLS=$elasticsearch_url \
     -p 5775:5775/udp \
     -p 6831:6831/udp \
     -p 6832:6832/udp \

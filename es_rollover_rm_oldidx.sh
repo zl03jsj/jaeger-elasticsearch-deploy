@@ -15,7 +15,7 @@ echo > remove old indices from read aliases
 docker run --privileged -it --rm --net=host -e UNIT=$unit -e \
     UNIT_COUNT=$unit_count \
     jaegertracing/jaeger-es-rollover:latest lookback \
-    http://localhost:9200
+    $elasticsearch_url
 
 echo > remove old indices from read aliases success!
 
@@ -28,4 +28,4 @@ echo > remove old history data
 docker run --privileged -it --rm --net=host \
     -e ROLLOVER=true \
     jaegertracing/jaeger-es-index-cleaner:latest $unit_count \
-    http://localhost:9200
+    $elasticsearch_url
