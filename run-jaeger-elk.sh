@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker run -d --name jaeger-elk \
+docker run --privileged -d --name jaeger-elk \
     -e SPAN_STORAGE_TYPE=elasticsearch \
     -e ES_SERVER_URLS=http://localhost:9200 \
     -p 5775:5775/udp \
