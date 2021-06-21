@@ -42,7 +42,8 @@ def main():
         if str2bool(os.getenv("ROLLOVER", 'false')):
             filter_main_indices_rollover(ilo, prefix)
         else:
-            filter_main_indices(ilo, prefix, separator)
+            filter_main_indicesV2(ilo, int(sys.argv[1]))
+            # filter_main_indices(ilo, prefix, separator)
 
     empty_list(ilo, 'No indices to delete')
 
@@ -52,6 +53,9 @@ def main():
     delete_indices = curator.DeleteIndices(ilo, master_timeout=timeout)
     delete_indices.do_action()
 
+
+def filter_main_indicesV2(ilo, count):
+    ilo.filter_by_count(count=count, pattern='^(.*)-\d{6}$', reverse=True)
 
 def filter_main_indices(ilo, prefix, separator):
     date_regex = "\d{4}" + separator + "\d{2}" + separator + "\d{2}"
