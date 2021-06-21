@@ -10,22 +10,27 @@ display_rollover_configurations
 # This step could be optional and 
 # old indices could be simply removed by index cleaner in the next step.
 
-echo > remove old indices from read aliases
+#echo ------------------------------------
+#echo '|'remove old indices from read aliases
 
-docker run --privileged -it --rm --net=host -e UNIT=$unit -e \
-    UNIT_COUNT=$unit_count \
-    jaegertracing/jaeger-es-rollover:latest lookback \
-    $elasticsearch_url
+#docker run --privileged -it --rm --net=host -e UNIT=$unit -e \
+    #UNIT_COUNT=$unit_count \
+    #jaegertracing/jaeger-es-rollover:latest lookback \
+    #$elasticsearch_url
 
-echo > remove old indices from read aliases success!
+#echo ------------------------------------
+#echo '|'remove old indices from read aliases success!
 
 # Remove indices older than 2*60 seconds
 
 # The historical data can be removed with the jaeger-es-index-cleaner 
 # that is also used for daily indices.
 
-echo > remove old history data 
+echo
+echo -----------------------------------
+echo '|'remove old history data, last $del_lastcount indexs
+
 docker run --privileged -it --rm --net=host \
     -e ROLLOVER=true \
-    jaegertracing/jaeger-es-index-cleaner:latest $unit_count \
+    jaegertracing/jaeger-es-index-cleaner:latest 1 \
     $elasticsearch_url
