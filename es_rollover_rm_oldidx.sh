@@ -30,7 +30,9 @@ echo
 echo -----------------------------------
 echo '|'remove old history data, last $del_lastcount indexs
 
-docker run --privileged -it --rm --net=host \
-    -e ROLLOVER=true \
-    jaegertracing/jaeger-es-index-cleaner:latest 1 \
-    $elasticsearch_url
+python3 ./es_cleaner.py $del_lastcount $elasticsearch_url
+
+#docker run --privileged -it --rm --net=host \
+    #-e ROLLOVER=true \
+    #jaegertracing/jaeger-es-index-cleaner:latest $del_lastcount \
+    #$elasticsearch_url
