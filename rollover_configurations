@@ -1,8 +1,8 @@
 #!/bin/bash
 
-unit=hours
+unit=minutes
 
-unit_count=2
+unit_count=10
 
 del_lastcount=3
 
