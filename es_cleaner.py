@@ -55,6 +55,7 @@ def main():
 
 
 def filter_main_indicesV2(ilo, count):
+    ilo.filter_by_regex(kind='prefix', value='jaeger-span-')
     ilo.filter_by_count(count=count, pattern='^(.*)-\d{6}$', reverse=True)
 
 def filter_main_indices(ilo, prefix, separator):
