@@ -7,15 +7,17 @@ jaeger使用elasticsearch作为存储介质,采用rollover的index管理方式�
 ### deploy elasticsearch
 
 following command starts a **single-node** elasticsearch with docker.
-~~`docker run --privileged -d --name elasticsearch -p 9200:9200 \
+`docker run --privileged -d --name elasticsearch -p 9200:9200 \
 	-p 9300:9300
 	-e "discovery.type=single-node"
 	-v "/root/venus-tracer-collector/elastic_search_data:/es_data"
-	elasticsearch:7.12.0`~~
+	elasticsearch:7.12.0`
 
-`python3 ./es_rollover.py init $(elasticsearch_url)`
+~~`python3 ./es_rollover.py init $(elasticsearch_url)`~~
 
-这里的es_rollover.py请参考后面的:[rollover to new index 方法二](#rollover_nex_idx_2)
+~~这里的es_rollover.py请参考后面的:[rollover to new index 方法二](#rollover_nex_idx_2)~~
+
+**es_rollover.py init依赖jaeger项目中的命令:`esmapping-generator`, 所以没办法直接使用.**
 
 ### elasticsearch initialize
 
