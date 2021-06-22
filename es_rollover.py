@@ -78,9 +78,11 @@ def main():
         write_alias = prefix + 'jaeger-span-write'
         read_alias = prefix + 'jaeger-span-read'
         perform_action(action, client, write_alias, read_alias, prefix + 'jaeger-span', 'jaeger-span', prefix)
-        # write_alias = prefix + 'jaeger-service-write'
-        # read_alias = prefix + 'jaeger-service-read'
-        # perform_action(action, client, write_alias, read_alias, prefix + 'jaeger-service', 'jaeger-service', prefix)
+
+        if action=="init":
+            write_alias = prefix + 'jaeger-service-write'
+            read_alias = prefix + 'jaeger-service-read'
+            perform_action(action, client, write_alias, read_alias, prefix + 'jaeger-service', 'jaeger-service', prefix)
 
 
 def perform_action(action, client, write_alias, read_alias, index_to_rollover, template_name, prefix):
