@@ -4,6 +4,7 @@ path=`pwd`/es_data
 
 if [ ! -d "$path" ]; then
     mkdir -p $path
+    chmod 777 $path
 fi
 
 echo store elasticsearch index at : $path
