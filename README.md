@@ -154,4 +154,4 @@ del_lastcount=3
 [jaeger elasticsearch索引管理策略化](https://www.jaegertracing.io/docs/1.23/deployment/#elasticsearch-ilm-support)
 
 [python curator document](https://curator.readthedocs.io/en/latest/index.html)
-
+[Where did all my spans go](https://medium.com/jaegertracing/where-did-all-my-spans-go-a-guide-to-diagnosing-dropped-spans-in-jaeger-10d9697f8182)
