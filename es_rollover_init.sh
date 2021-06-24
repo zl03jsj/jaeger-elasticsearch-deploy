@@ -14,4 +14,3 @@ fi
 
 # 需要编译esmapping-generator,所以没办法直接使用
 python3 ./es_rollover.py init ${elasticsearch_url}
-

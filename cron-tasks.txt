@@ -1,0 +1,2 @@
+#每两小时执行一次的crontab任务
+* * * * * sh /Users/zl/workspace/go/src/ipfsforce/venus/venus-tracer-collector/es_crontab.sh >> cronfile.log 2>&1 &
