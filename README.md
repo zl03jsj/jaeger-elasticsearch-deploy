@@ -137,7 +137,7 @@ del_lastcount=3
 这里, unit=hours, unit_count=2所以编译:
 ```crontab -e```
 添加内容:
-```* */2 * * * sh /root/jaeger-elasticsearch-deploy/es_crontab.sh```
+```0 */2 * * * sh /root/jaeger-elasticsearch-deploy/es_crontab.sh```
  es_crontab.sh就会每2小时自动执行一次, 
 并完成下面的工作:
 - rollover一个新的index文件, 如果最近的index文件没有操作3小时, 则忽略.
