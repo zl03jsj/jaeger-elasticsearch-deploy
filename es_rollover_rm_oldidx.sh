@@ -2,8 +2,6 @@
 
 source ./rollover_configurations
 
-display_rollover_configurations
-
 # remove old indices from read aliases.
 # It means that old data will not be available for search.
 # This imitates the behavior of --es.max-span-age flag used in the default index-per-day deployment.
@@ -26,13 +24,11 @@ display_rollover_configurations
 # The historical data can be removed with the jaeger-es-index-cleaner 
 # that is also used for daily indices.
 
-echo
-echo -----------------------------------
-echo '|'remove old history data, last $del_lastcount indexs
-
-python3 ./es_cleaner.py $del_lastcount $elasticsearch_url
 
 #docker run --privileged -it --rm --net=host \
     #-e ROLLOVER=true \
     #jaegertracing/jaeger-es-index-cleaner:latest $del_lastcount \
     #$elasticsearch_url
+
+echo remove history indexs older than last $del_lastcount
+python3 ./es_cleaner.py $del_lastcount $elasticsearch_url
