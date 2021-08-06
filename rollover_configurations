@@ -12,6 +12,13 @@ max_age=$unit_count${unit:0:1}
 
 del_services_idxs=no
 
+operation=rollover
+
+if [ "${del_service_idxs}" == "yes" ]; then
+  operation=init
+fi
+
+
 basePath=$(cd `dirname $0`; pwd)
 
 display_rollover_configurations() {
