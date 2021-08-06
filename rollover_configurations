@@ -1,29 +1,26 @@
 #!/bin/bash
 
+# unit can be: seconds/minutes/hours
 unit=hours
 
-unit_count=2
+unit_count=1
 
-del_lastcount=3
+del_lastcount=2
 
-elasticsearch_url=http://`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"|grep -v '1$'`:9200
-
+#elasticsearch_url=http://`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"|grep -v '1$'`:9200
+elasticsearch_url=http://192.168.1.125:9200
 max_age=$unit_count${unit:0:1}
 
-del_services_idxs=no
+del_services_idxs="no"
 
-operation=rollover
-
-if [ "${del_service_idxs}" == "yes" ]; then
-  operation=init
-fi
-
-
-basePath=$(cd `dirname $0`; pwd)
+basePath=$(
+  cd $(dirname $0)
+  pwd
+)
 
 display_rollover_configurations() {
-    echo ____________jaeger elasticsearch configurations____________
-    echo '|'unit=$unit, unit_count=$unit_count, del_lastcount='('older than $del_lastcount $unit_count$unit')', index max_age=$max_age, elasticsearch_url=$elasticsearch_url
-    echo -----------------------------------------------------------
-    echo
+  echo ____________jaeger elasticsearch configurations____________
+  echo '|'unit=$unit, unit_count=$unit_count, del_lastcount='('older than $del_lastcount $unit_count$unit')', index max_age=$max_age, elasticsearch_url=$elasticsearch_url
+  echo -----------------------------------------------------------
+  echo
 }

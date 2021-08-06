@@ -9,5 +9,7 @@ echo ----------------TASK TIME:$time----------------
 ./es_rollover_newidx.sh
 ./es_rollover_rm_oldidx.sh
 
-curl -XGET 'localhost:9200/_cat/indices?v&pretty' | awk 'NR>1{print $3}'
+source ./rollover_configurations
+
+curl -XGET ${elasticsearch_url}'/_cat/indices?v&pretty' | awk 'NR>1{print $3}'
 

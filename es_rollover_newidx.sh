@@ -9,4 +9,5 @@ source ./rollover_configurations
 #    $elasticsearch_url
 
 export CONDITIONS='{"max_age": "'${max_age}'"}'
-python3 ./es_rollover.py ${operation} ${elasticsearch_url}
+
+python3 ./es_rollover.py rollover ${elasticsearch_url} ${del_services_idxs}
