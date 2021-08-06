@@ -23,7 +23,7 @@ ILM_POLICY_NAME = 'jaeger-ilm-policy'
 TIMEOUT=120
 
 def main():
-    if len(sys.argv) != 3:
+    if len(sys.argv) < 3:
         print(
             'USAGE: [INDEX_PREFIX=(default "")] [ARCHIVE=(default false)] ... {} ACTION http://HOSTNAME[:PORT]'.format(
                 sys.argv[0]))

@@ -10,6 +10,8 @@ elasticsearch_url=http://`ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|
 
 max_age=$unit_count${unit:0:1}
 
+del_services_idxs=no
+
 basePath=$(cd `dirname $0`; pwd)
 
 display_rollover_configurations() {

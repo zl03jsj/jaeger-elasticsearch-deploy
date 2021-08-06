@@ -31,4 +31,4 @@ source ./rollover_configurations
     #$elasticsearch_url
 
 echo remove history indexs older than last $del_lastcount
-python3 ./es_cleaner.py $del_lastcount $elasticsearch_url
+python3 ./es_cleaner.py $del_lastcount $elasticsearch_url $del_services_idxs

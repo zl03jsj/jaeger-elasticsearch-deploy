@@ -9,8 +9,8 @@ import sys
 TIMEOUT=120
 
 def main():
-    if len(sys.argv) != 3:
-        print('USAGE: [INDEX_PREFIX=(default "")] [ARCHIVE=(default false)] ... {} NUM_OF_DAYS http://HOSTNAME[:PORT]'.format(sys.argv[0]))
+    if len(sys.argv) < 3:
+        print('USAGE: [INDEX_PREFIX=(default "")] [ARCHIVE=(default false)] ... {} NUM_OF_DAYS http://HOSTNAME[:PORT] delete_old_services_index'.format(sys.argv[0]))
         print('NUM_OF_DAYS ... delete indices that are older than the given number of days.')
         print('HOSTNAME ... specifies which Elasticsearch hosts URL to search and delete indices from.')
         print('TIMEOUT ...  number of seconds to wait for master node response (default {}).'.format(TIMEOUT))
@@ -42,7 +42,8 @@ def main():
         if str2bool(os.getenv("ROLLOVER", 'false')):
             filter_main_indices_rollover(ilo, prefix)
         else:
-            filter_main_indicesV2(ilo, int(sys.argv[1]))
+            del_service = False if len(sys.argv) < 3 else sys.argv[3] == 'yes'
+            filter_main_indicesV2(ilo, int(sys.argv[1]), del_service)
             # filter_main_indices(ilo, prefix, separator)
 
     empty_list(ilo, 'No indices to delete')
@@ -54,8 +55,9 @@ def main():
     delete_indices.do_action()
 
 
-def filter_main_indicesV2(ilo, count):
-    ilo.filter_by_regex(kind='prefix', value='jaeger-span-')
+def filter_main_indicesV2(ilo, count, del_service):
+    prefix_value = 'jaeger-' + '(span|service|dependencies)-' if del_service else 'span-'
+    ilo.filter_by_regex(kind='prefix', value=prefix_value)
     ilo.filter_by_count(count=count, pattern='^(.*)-\d{6}$', reverse=True)
 
 def filter_main_indices(ilo, prefix, separator):
